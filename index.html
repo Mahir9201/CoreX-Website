@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Coming Soon - CoreX</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: #0d0d0d url('backgrounds/coming-soon-bg.png') no-repeat center center fixed;
+            background-size: cover;
+            background-position: center;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+
+        .logo {
+            font-size: 48px;
+            font-weight: 700;
+            padding: 40px 60px;
+            color: white;
+        }
+
+        .logo .x {
+            color: white;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #ccc;
+            margin-bottom: 40px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        input,
+        textarea {
+            padding: 14px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            background-color: #1c1c1c;
+            color: white;
+            resize: none;
+        }
+
+        textarea {
+            min-height: 100px;
+        }
+
+        button {
+            padding: 14px;
+            border: none;
+            border-radius: 6px;
+            background-color: #f7931e;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            color: #000;
+        }
+
+        button:hover {
+            background-color: #ffa733;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.9rem;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        footer a {
+            color: #f7931e;
+            text-decoration: none;
+        }
+
+        @media screen and (max-width: 600px) {
+            body {
+                background-size: cover;
+                background-position: top center;
+            }
+
+            .logo {
+                font-size: 36px;
+                padding: 30px 20px;
+                text-align: center;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="logo">Core<span class="x">X.</span></div>
+
+    <main>
+        <h1>We’re Launching Soon</h1>
+        <p>Our team is building something exceptional. Be the first to know.</p>
+
+        <form id="contact-form">
+            <input type="text" name="name" placeholder="Your Name" required />
+            <input type="email" name="email" placeholder="Your Email" required />
+            <textarea name="message" placeholder="Your Message" required></textarea>
+            <button type="submit">Notify Me</button>
+        </form>
+        <p id="form-success" style="display:none; margin-top: 20px; color: #0f0;">Thanks! We'll be in touch.</p>
+
+        <script>
+            const form = document.getElementById('contact-form');
+            const successMessage = document.getElementById('form-success');
+
+            form.addEventListener('submit', async function (e) {
+                e.preventDefault();
+
+                const formData = new FormData(form);
+                const object = Object.fromEntries(formData.entries());
+
+                const response = await fetch("https://formspree.io/f/mvgrgzjl", {
+                    method: "POST",
+                    headers: {
+                        "Accept": "application/json",
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(object)
+                });
+
+                if (response.ok) {
+                    form.reset();
+                    successMessage.style.display = 'block';
+                } else {
+                    alert("Oops! Something went wrong. Please try again later.");
+                }
+            });
+        </script>
+
+    </main>
+
+    <footer>
+        &copy; Copyright 2025 - CoreX Software. All Rights
+        Reserved. Contact: <a href="mailto:info@corextech.ai">info@corextech.ai</a>
+    </footer>
+</body>
+
+</html>
