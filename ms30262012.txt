@@ -1,0 +1,5 @@
+﻿{
+  "Description": "Domain ownership verification file for Microsoft 365 - place in the website root",
+  "Domain": "corextech.ai",
+  "Id": "0a3bacd0-d74c-403c-8ff7-978894097cee"
+}
